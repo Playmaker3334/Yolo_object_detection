@@ -1,0 +1,62 @@
+# Configuración del detector
+detector:
+  # Modelos disponibles: yolov8n, yolov8s, yolov8m, yolov8l, yolov8x (de menor a mayor precisión/peso)
+  model: "yolov8n"  # Puedes cambiar a yolov8s para mejor precisión
+  confidence: 0.5
+  iou_threshold: 0.45  # Threshold para non-maximum suppression
+  max_det: 100        # Máximas detecciones por frame
+  tracking: true      # Activa el seguimiento de objetos
+
+# Configuración de cámara
+camera:
+  index: 1
+  width: 1280
+  height: 720
+  fps: 30
+  buffer_size: 3      # Tamaño de buffer para frames
+
+# Configuración de distancia
+distance:
+  focal_length: 650   # Valor aproximado para webcams genéricas
+  smooth_frames: 10   # Aumentado para mayor estabilidad
+  min_size_px: 20     # Tamaño mínimo en píxeles para calcular distancia
+  max_distance: 500   # Distancia máxima mostrada (cm)
+  calibration_mode: false  # Activar para modo de calibración
+
+# Visualización
+display:
+  show_fps: true
+  show_distance: true
+  show_labels: true
+  line_thickness: 2
+  font_scale: 0.7
+  distance_colormap: "GREEN_TO_RED"
+  distance_unit: "cm"              # Unidad de distancia (cm o m)
+  confidence_threshold_display: 0.6  # Mostrar solo objetos con alta confianza
+  text_bg_opacity: 0.7             # Opacidad del fondo del texto
+  show_debug_info: false           # Mostrar información de depuración
+
+# Tamaños de referencia de objetos en cm
+object_sizes:
+  person:
+    width: 45
+    height: 170
+    reference: "height"
+    correction_factor: 0.85  # Factor para compensar vista parcial
+  
+  face:
+    width: 14
+    height: 20
+    reference: "width"
+  
+  bottle:
+    width: 8
+    height: 25
+    reference: "height"
+    
+  # Ajuste para teléfono móvil
+  cell phone:
+    width: 7.5
+    height: 15
+    reference: "height"
+    correction_factor: 1.2  # Factor de corrección para distancias
